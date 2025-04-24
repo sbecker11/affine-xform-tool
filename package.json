@@ -1,7 +1,7 @@
 {
-"name": "affine-tester",
+"name": "affine-xform-tool",
   "version": "1.0.0",
-"description": "A demonstration of affine transformation of planar rotation about an in-plan axis",
+"description": "A demonstration of affine transformation of planar rotation about an in-plane axis",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
