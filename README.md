@@ -1,6 +1,6 @@
 # Affine X-Form Tool
 
-<img src="affine-xform-tool.png" alt="Affine Transformation Demo" width="50%" />
+<img src="./public/affine-xform-tool.png" alt="Affine Transformation Demo" width="50%" />
 
 This web application demonstrates the transformation of points and text laying in a 2D plane that is subject to 3D rotation of that plane about a arbitrary vector that lies in that plane. An orthographic projection is used so the Rodrigues' rotation transformation can be applied. The app allows interactive manipulation of the in-plane axis of rotation and the angle of rotation of that plane about that axis
 
@@ -25,11 +25,10 @@ This web application demonstrates the transformation of points and text laying i
 
 ## Running the Application
 
-1. Start the server:
+1. Start the node server and the chrome http://localhost:3000 client concurrently:
    ```bash
-   npm start
+   npm run start
    ```
-2. Open your browser and navigate to `http://localhost:3000`
 
 ## How to Use
 
@@ -56,7 +55,7 @@ grid in the X-Y plane, with origin at window center. The +X axis is shown in red
 ## Technical Details
 
 *   Uses **Three.js** for 3D rendering and an orthographic camera for the 2D projection.
-*   **Rodrigues' Rotation Formula** is implemented in `applyRodriguesRotation` function in `public/js/rotation.js` to calculate the rotated positions of vertices and points.
+*   **Rodrigues' Rotation Formula** is implemented in `applyRodriguesRotation` function in `public/rotation.js` to calculate the rotated positions of vertices and points.
 *   Points and text added *after* a rotation are correctly placed onto the transformed plane by applying the current rotation to their initial position.
 *   The 2D affine transformation matrix is derived mathematically from the Rodrigues formula and the orthographic projection.
 *   A simple **Node.js/Express** server (`server.js`) serves the static HTML, CSS, and JavaScript files. 

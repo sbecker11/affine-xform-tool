@@ -1,3 +1,5 @@
+import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.min.js';
+
 // Initialize Three.js scene
 const scene = new THREE.Scene();
 const baseViewSize = 10;

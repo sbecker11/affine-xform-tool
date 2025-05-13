@@ -4,9 +4,9 @@
     "description": "A demonstration of affine transformation of planar rotation about an in-plane axis",
     "main": "server.js",
     "scripts": {
-        "start": "concurrently \"npm run server\" \"npm run open-chrome\"",
-        "server": "node server.js",
-        "open-chrome": "open-cli http://localhost:3000"
+        "start": "concurrently \"npm run node-server\" \"npm run open-chrome\"",
+        "node-server": "node server.js",
+        "open-chrome": "open-cli http://localhost:3000 --incognito"
     },
     "keywords": [
         "3d",
@@ -16,8 +16,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "express": "^5.1.0",
-        "three": "^0.175.0"
+        "express": "^5.1.0"
     },
     "devDependencies": {
         "concurrently": "^9.1.2",

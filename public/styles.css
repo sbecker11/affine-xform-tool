@@ -1,0 +1,116 @@
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+.container {
+    display: flex;
+    gap: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+.controls {
+    flex: 1;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    min-width: 250px;
+}
+.canvas-container {
+    flex: 2;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    width: 500px;
+    height: 500px;
+    flex: none;
+}
+canvas {
+    width: 100%;
+    height: 100%;
+}
+.control-group {
+    margin-bottom: 20px;
+}
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+.slider-container input[type="range"] {
+    flex: 1;
+}
+.value-display {
+    font-family: monospace;
+    color: #666;
+    min-width: 4em;
+    text-align: right;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.button-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 10px 0;
+}
+.control-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 1;
+}
+.control-button:hover {
+    background-color: #45a049;
+}
+#removePoint {
+    background-color: #f44336;
+}
+#removePoint:hover {
+    background-color: #da190b;
+}
+.text-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 0;
+}
+.text-controls {
+    display: flex;
+    gap: 10px;
+}
+.text-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+}
+.text-input:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+.control-button.warning {
+    background-color: #ff9800;
+}
+.control-button.warning:hover {
+    background-color: #f57c00;
+}
+.control-button.secondary {
+    background-color: #757575;
+}
+.control-button.secondary:hover {
+    background-color: #616161;
+}
