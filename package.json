@@ -1,17 +1,26 @@
 {
-"name": "affine-xform-tool",
-  "version": "1.0.0",
-"description": "A demonstration of affine transformation of planar rotation about an in-plane axis",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": ["3d", "rotation", "visualization"],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^5.1.0",
-    "three": "^0.175.0"
-  }
+    "name": "affine-xform-tool",
+    "version": "1.0.0",
+    "description": "A demonstration of affine transformation of planar rotation about an in-plane axis",
+    "main": "server.js",
+    "scripts": {
+        "start": "concurrently \"npm run server\" \"npm run open-chrome\"",
+        "server": "node server.js",
+        "open-chrome": "open-cli http://localhost:3000"
+    },
+    "keywords": [
+        "3d",
+        "rotation",
+        "visualization"
+    ],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^5.1.0",
+        "three": "^0.175.0"
+    },
+    "devDependencies": {
+        "concurrently": "^9.1.2",
+        "open-cli": "^8.0.0"
+    }
 }
