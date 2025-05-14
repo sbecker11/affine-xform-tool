@@ -122,11 +122,11 @@ label {
     background-color: #45a049;
 }
 #delPoint,
-#delText {
+#delWord {
     background-color: #f44336;
 }
 #delPoint:hover,
-#delText:hover {
+#delWord:hover {
     background-color: #da190b;
 }
 .word-input-container {
