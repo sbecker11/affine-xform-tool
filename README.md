@@ -57,7 +57,7 @@ grid in the X-Y plane, with origin at window center. The +X axis is shown in red
 ## Technical Details
 
 *   Uses **Three.js** for 3D rendering and an orthographic camera for the 2D projection.
-*   **Rodrigues' Rotation Formula** is implemented in `applyRodriguesRotation` function in `public/rotation.js` to calculate the rotated positions of vertices and points.
+*   **Rodrigues' Rotation Formula** is implemented in `applyRodriguesRotation` function in `index.js` to calculate the rotated positions of vertices and points.
 *   Points and text added *after* a rotation are correctly placed onto the transformed plane by applying the current rotation to their initial position.
 *   The 2D affine transformation matrix is derived mathematically from the Rodrigues formula and the orthographic projection.
 *   A simple **Node.js/Express** server (`server.js`) serves the static HTML, CSS, and JavaScript files. 
