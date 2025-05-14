@@ -1,10 +1,12 @@
 # Affine X-Form Tool
 
-<img src="./affine-xform-tool.png" alt="Affine Transformation Demo" width="50%" />
+<img src="./affine-xform-tool.png" alt="Affine Transformation Demo" width="50%" />  
 
-This web application demonstrates the transformation of points and text laying in a 2D plane that is subject to 3D rotation of that plane about a arbitrary vector that lies in that plane. An orthographic projection is used so the Rodrigues' rotation transformation can be applied. The app allows interactive manipulation of the in-plane axis of rotation and the angle of rotation of that plane about that axis
+## Overview  
 
-## Features
+This web application demonstrates the transformation of points and text laying in a 2D plane that is subject to 3D rotation of that plane about a arbitrary vector that lies in that plane. An orthographic projection is used so the Rodrigues' rotation transformation can be applied. The app allows interactive manipulation of the in-plane axis of rotation and the angle of rotation of that plane about that axis  
+
+## Features  
 
 - Adjustable axis of rotation direction angle (0° to 360°)
 - Interactive plane rotation angle control (-180° to +180°)
@@ -12,7 +14,7 @@ This web application demonstrates the transformation of points and text laying i
 - Real-time visualization of the rotation
 - Orthographic projection for true 2D visualization
 - Random placement of points in the plane
-- Text input field for text at plane origin.
+- Random placement of random words in the plane
 
 ## Installation
 
@@ -48,7 +50,7 @@ grid in the X-Y plane, with origin at window center. The +X axis is shown in red
 
 5. **Random Points**: Use the "add point" and "remove point" buttons to manage 2-D points placed randomly on the grid.
 
-6. **Text field**: Enter a text string (default is "Hello World") to be placed at grid origin.
+6. **Random Words**: Choose a random word or add your own to be placed at random point on the X-Y plane.
 
 7. **Affine Transformation Display**: The equivalent 2D affine transformation (resulting from the 3D rotation and orthographic projection) is displayed, showing: the numerical 2x2 matrix, the current rotation angles (φ and θ), and the equations defining the matrix elements.
 

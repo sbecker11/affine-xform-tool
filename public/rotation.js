@@ -130,7 +130,7 @@ scene.add(axisLine);
 
 // Store random points and text objects
 const randomPoints = [];
-const textObjects = [];
+const wordObjects = [];
 
 // Create text plane function
 function createTextSprite(text, x, y) {
@@ -186,9 +186,9 @@ function createTextSprite(text, x, y) {
 }
 
 // Function to add text, projected onto the rotated plane
-function createRandomText() {
-    const textInput = document.getElementById('textInput');
-    const text = textInput.value.trim();
+function createRandomWord() {
+    const wordInput = document.getElementById('wordInput');
+    const text = wordInput.value.trim();
     
     if (text) {
         // Get current rotation state
@@ -225,35 +225,34 @@ function createRandomText() {
         textMesh.setRotationFromMatrix(initialRotationMatrix); // Set initial orientation
         
         scene.add(textMesh);
-        textObjects.push(textMesh);
+        wordObjects.push(textMesh);
         
         // prepare for next text
-        textInput.value = getRandomWord();
+        wordInput.value = getRandomWord();
     }
 }
 
 // Function to delete the last added text object
-function deleteLastText() {
-    if (textObjects.length > 0) {
-        const lastTextObject = textObjects.pop();
-        scene.remove(lastTextObject);
-        updateTextCount();
+function deleteLastWord() {
+    if (wordObjects.length > 0) {
+        const lastwordObject = wordObjects.pop();
+        scene.remove(lastwordObject);
+        updateWordCount();
     }
 }
 
-// Function to update text count display
-function updateTextCount() {
-    const textCount = document.getElementById('textCount');
-    textCount.textContent = `${textObjects.length} texts`;
+// Function to update word count display
+function updateWordCount() {
+    const wordCount = document.getElementById('wordCount');
+    wordCount.textContent = `${wordObjects.length} words`;
 }
 
-
-// Add text controls event listeners
-document.getElementById('addText').addEventListener('click', createRandomText);
-document.getElementById('delText').addEventListener('click', deleteLastText);
-document.getElementById('textInput').addEventListener('keypress', (e) => {
+// Add word controls event listeners
+document.getElementById('addWord').addEventListener('click', createRandomWord);
+document.getElementById('delWord').addEventListener('click', deleteLastWord);
+document.getElementById('wordInput').addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-        createRandomText();
+        createRandomWord();
     }
 });
 
@@ -417,20 +416,20 @@ function updateValues() {
         point.position.copy(rotatedPos);
     });
 
-    // Update text objects with both position and orientation
-    textObjects.forEach(textObj => {
-        if (textObj.userData.originalPosition) {
+    // Update word objects with both position and orientation
+    wordObjects.forEach(wordObj => {
+        if (wordObj.userData.originalPosition) {
             // Rotate position
-            const originalPos = textObj.userData.originalPosition.clone();
+            const originalPos = wordObj.userData.originalPosition.clone();
             const rotatedPos = applyRodriguesRotation(originalPos, axis, rotationAngle);
-            textObj.position.copy(rotatedPos);
+            wordObj.position.copy(rotatedPos);
 
             // Calculate rotation matrix for orientation
             const rotationMatrix = new THREE.Matrix4();
             rotationMatrix.makeRotationAxis(axis, rotationAngle);
             
             // Apply rotation
-            textObj.setRotationFromMatrix(rotationMatrix);
+            wordObj.setRotationFromMatrix(rotationMatrix);
         }
     });
 
@@ -478,31 +477,6 @@ function updateValues() {
     renderer.render(scene, camera);
 }
 
-// Function to create text for a point
-function createTextForPoint(point, index) {
-    const loader = new THREE.FontLoader();
-    loader.load('fonts/helvetiker_regular.typeface.json', function (font) {
-        const textGeometry = new THREE.TextGeometry(`P${index}`, {
-            font: font,
-            size: 0.3,
-            height: 0.1
-        });
-        const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
-        const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-        
-        // Position text slightly offset from the point
-        textMesh.position.copy(point.position);
-        textMesh.position.x += 0.3;
-        textMesh.position.y += 0.3;
-        
-        // Store the original position for rotation
-        textMesh.userData.originalPosition = textMesh.position.clone();
-        
-        scene.add(textMesh);
-        textObjects.push(textMesh);
-    });
-}
-
 // Wait for DOM to be ready before setting up event listeners
 document.addEventListener('DOMContentLoaded', function() {
     // Add event listeners
@@ -512,12 +486,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('resetView').addEventListener('click', resetView);
     document.getElementById('addPoint').addEventListener('click', createRandomPoint);
     document.getElementById('delPoint').addEventListener('click', deleteLastPoint);
-    document.getElementById('addText').addEventListener('click', createRandomText);
-    document.getElementById('delText').addEventListener('click', deleteLastText);
-    document.getElementById('textInput').addEventListener('keypress', (e) => {
+    document.getElementById('addWord').addEventListener('click', createRandomWord);
+    document.getElementById('delWord').addEventListener('click', deleteLastWord);
+    document.getElementById('wordInput').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
-            const textInput = document.getElementById('textInput');
-            textInput.value = getRandomWord();
+            const wordInput = document.getElementById('wordInput');
+            wordInput.value = getRandomWord();
         }
     });
 

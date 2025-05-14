@@ -37,7 +37,8 @@ body {
     /* Forces side columns to stay same width */
     flex: 1 1;
     max-width: 300px;
-    border: 1px solid black;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     background-color: white;
 }
   
@@ -128,23 +129,23 @@ label {
 #delText:hover {
     background-color: #da190b;
 }
-.text-input-container {
+.word-input-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin: 10px 0;
 }
-.text-controls {
+.word-controls {
     display: flex;
     gap: 10px;
 }
-.text-input {
+.word-input {
     padding: 8px;
     border: 1px solid #777;
     border-radius: 4px;
     font-size: 14px;
 }
-.text-input:focus {
+.word-input:focus {
     border-color: #4CAF50;
     outline: none;
     box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
@@ -154,4 +155,8 @@ label {
 }
 .control-button.warning:hover {
     background-color: #f57c00;
+}
+
+.margin-bottom-zero {
+    margin-bottom: 0px;
 }
