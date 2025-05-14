@@ -186,7 +186,7 @@ function createTextSprite(text, x, y) {
 }
 
 // Function to add text, projected onto the rotated plane
-function addText() {
+function createRandomText() {
     const textInput = document.getElementById('textInput');
     const text = textInput.value.trim();
     
@@ -204,9 +204,12 @@ function addText() {
 
         // Create text mesh at the origin (0,0,0) initially
         const textMesh = createTextSprite(text, 0, 0); 
+
+        const randX = (Math.random() - 0.5) * 10;
+        const randY = (Math.random() - 0.5) * 10;
         
         // Define and store the original (unrotated) position
-        const originalPosition = new THREE.Vector3(0, 0, 0);
+        const originalPosition = new THREE.Vector3(randX,randY, 0);
         textMesh.userData.originalPosition = originalPosition.clone(); // Store the original
 
         // Calculate the position on the currently rotated plane
@@ -224,25 +227,33 @@ function addText() {
         scene.add(textMesh);
         textObjects.push(textMesh);
         
-        // Clear input
-        textInput.value = '';
+        // prepare for next text
+        textInput.value = getRandomWord();
     }
 }
 
-// Function to clear all text
-function clearAllText() {
-    textObjects.forEach(text => {
-        scene.remove(text);
-    });
-    textObjects.length = 0;
+// Function to delete the last added text object
+function deleteLastText() {
+    if (textObjects.length > 0) {
+        const lastTextObject = textObjects.pop();
+        scene.remove(lastTextObject);
+        updateTextCount();
+    }
 }
 
+// Function to update text count display
+function updateTextCount() {
+    const textCount = document.getElementById('textCount');
+    textCount.textContent = `${textObjects.length} texts`;
+}
+
+
 // Add text controls event listeners
-document.getElementById('addText').addEventListener('click', addText);
-document.getElementById('clearText').addEventListener('click', clearAllText);
+document.getElementById('addText').addEventListener('click', createRandomText);
+document.getElementById('delText').addEventListener('click', deleteLastText);
 document.getElementById('textInput').addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-        addText();
+        createRandomText();
     }
 });
 
@@ -261,11 +272,11 @@ function createRandomPoint() {
     
     // Create a point in the original XY plane
     const pointGeometry = new THREE.SphereGeometry(0.1, 32, 32);
-    const x = (Math.random() - 0.5) * 10; // Random x between -5 and 5
-    const y = (Math.random() - 0.5) * 10; // Random y between -5 and 5
+    const randX = (Math.random() - 0.5) * 10; // Random x between -5 and 5
+    const randY = (Math.random() - 0.5) * 10; // Random y between -5 and 5
     
     // Create the original position vector
-    const originalPosition = new THREE.Vector3(x, y, 0);
+    const originalPosition = new THREE.Vector3(randX, randY, 0);
     
     // Apply the current rotation to get the point's position in the rotated plane
     const rotatedPosition = applyRodriguesRotation(originalPosition, axis, rotationAngle);
@@ -282,7 +293,7 @@ function createRandomPoint() {
 }
 
 // Function to remove the last added point
-function removeLastPoint() {
+function deleteLastPoint() {
     if (randomPoints.length > 0) {
         const point = randomPoints.pop();
         scene.remove(point);
@@ -296,9 +307,10 @@ function updatePointCount() {
     pointCount.textContent = `${randomPoints.length} points`;
 }
 
+
 // Add button event listeners
 document.getElementById('addPoint').addEventListener('click', createRandomPoint);
-document.getElementById('removePoint').addEventListener('click', removeLastPoint);
+document.getElementById('delPoint').addEventListener('click', deleteLastPoint);
 
 // Get UI elements
 const pointX = document.getElementById('pointX');
@@ -336,7 +348,7 @@ function updateZoom() {
     const zoomFactor = parseFloat(document.getElementById('zoomFactor').value);
     viewSize = baseViewSize / zoomFactor;
     updateCameraView();
-    document.getElementById('zoomValue').textContent = `${zoomFactor.toFixed(1)}×`;
+    document.getElementById('zoomValue').textContent = `${zoomFactor.toFixed(1)}`;
 }
 
 // Update values function
@@ -499,12 +511,13 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('rotationAngle').addEventListener('input', updateValues);
     document.getElementById('resetView').addEventListener('click', resetView);
     document.getElementById('addPoint').addEventListener('click', createRandomPoint);
-    document.getElementById('removePoint').addEventListener('click', removeLastPoint);
-    document.getElementById('addText').addEventListener('click', addText);
-    document.getElementById('clearText').addEventListener('click', clearAllText);
+    document.getElementById('delPoint').addEventListener('click', deleteLastPoint);
+    document.getElementById('addText').addEventListener('click', createRandomText);
+    document.getElementById('delText').addEventListener('click', deleteLastText);
     document.getElementById('textInput').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
-            addText();
+            const textInput = document.getElementById('textInput');
+            textInput.value = getRandomWord();
         }
     });
 
@@ -534,3 +547,13 @@ function resetView() {
     updateValues();
     updateZoom();
 } 
+
+function getRandomWord() {
+    const words = ["pudding","miss","separate","economist","bloodshed","chicken","hard",
+        "graphic","dilemma","screen","governor","clothes","responsibility","bulletin",
+        "integrity","Venus","stubborn","observer","carbon","elephant","weakness","abridge",
+        "snail","cereal","world","common","dealer","pity","sample","sport","withdraw","fly",
+        "frown","example","ratio","capital","tread","scrape","reserve","audience","slogan",
+        "collection","cultural","draw","plug","master","rhythm","eavesdrop","undress","neglect"]
+    return words[Math.floor(Math.random() * words.length)];
+}
